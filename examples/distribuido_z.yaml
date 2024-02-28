@@ -73,5 +73,5 @@ loads:
 # Os carregamentos dsitribuidos vão ser:
 # Sendo as colunas elemento q1y q2y q1z q2z
 floads:
- 1 10 10 0 0
- 2 10 10 0 0
+ 1 0 0 10 10
+ 2 0 0 10 10
