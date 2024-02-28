@@ -1,6 +1,6 @@
 name = "Viga3D"
 uuid = "4f2ccf67-311b-48f5-bb5d-0435d0eef3ea"
-authors = ["Eduardo Lenz <eduardobarplenz@gmail.com> and contributors"]
+authors = ["Eduardo Lenz <eduardobarplenz@gmail.com> and Sarah Maria Schroeder"]
 version = "1.0.0-DEV"
 
 [deps]
