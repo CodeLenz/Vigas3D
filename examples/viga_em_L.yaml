@@ -1,0 +1,63 @@
+versao: 1.0
+
+titulo: "viga_com_secao_transversal_em_L"
+
+# Viga com seção transversal em L com momento sendo aplicado 
+# no eixo z. O programa deve obter o resultado decompondo o
+# momento, pois a seção transversal não tem produto de 
+# inércia igual a zero. Ou seja, o cálculo deve ser feito 
+# considerando momento oblíquo. O resultado será comparado 
+# com o teórico na pasta de testes.
+
+data: 13/11/2023
+
+# As coordenadas referem-se a uma viga de um só elemento.
+# O objetivo com esse exemplo é verificar se o código de 
+# seções transversais entrega um resultado satisfatório
+# para o ângulo principal de inércia, α.
+coordenadas:
+  0.0 0.0 0.0
+  0.5 0.0 0.0
+  1.0 0.0 0.0
+
+conectividades:
+  1 2 
+  2 3 
+
+# Fazendo a viga engastada na extremidade contrária a aplicação do
+# momento 
+apoios:
+  1 ux 0.0
+  1 uy 0.0
+  1 uz 0.0
+  1 θx 0.0
+  1 θy 0.0
+  1 θz 0.0
+
+mpc:
+
+materiais:
+  - nome: aco
+    Ex: 209E9
+    G: 70E9
+
+# Aqui serão inseridos manualmente os resultados obtidos no programa
+# de seções transversais.
+# *****deixar automatico?******
+geometrias:
+  - nome: secao_L
+    A: 1.96e-5
+    Iz: 3.075e-7
+    Iy: 8.52777777777778e-8
+    J0: 3.927777777777778e-7
+    α: 45
+
+dados_elementos:
+  aco secao_L
+  aco secao_L
+
+loads:
+  3 mz 5000.0
+
+
+floads:

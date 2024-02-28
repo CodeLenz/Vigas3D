@@ -1,0 +1,100 @@
+versao: 1.0
+
+#
+# Exemplo de entrada de dados para o programa de viga 3D
+#
+# 
+#                              /\  /
+#  #                           |   \ )
+#  #(1)------(2) MPC (3)------(4)    )
+#  #
+#
+#
+
+# Título é opcional
+titulo:  Exemplo de entrada de dados 
+
+# Data de criação também
+data:  11/11/2023
+
+# Coordenadas é obrigatório. Uma linha para cada nó e 3 colunas
+coordenadas: 
+  0.0 0.0 0.0
+  1.0 0.0 0.0
+  1.0 0.0 0.0
+  2.0 0.0 0.0
+
+
+# As conectividades também devem ser informadas. Cada linha é um elemento  
+# Vou colocar os elementos com nós não conectados para podermos
+# brincar com o MPC
+#
+# #(1)-----(2)MPC(3)------(4)
+#
+conectividades:
+  1 2 
+  3 4   
+
+# Informação dos apoios também é obrigatória. Os gls locais podem
+# ser informados tanto pelos símbolos quanto pelos valores em [1,6]
+apoios:
+  1 ux 0.0
+  1 uy 0.0
+  1 uz 0.0
+  1 θx 0.0
+  1 θy 0.0
+  1 θz 0.0
+
+# Multi Point Constraints
+# Restrições em que o resultado (deslocamento ou rotação) de um gl global
+# deve ser igual a outro gl global. As informações são dadas por 
+# no1 gl1 no2 gl2 
+# onde gl1 e gl2 são os gls locais dos nós no1 e no2
+mpc:
+  2 ux 3 ux
+  2 uy 3 uy
+  2 uz 3 uz
+  2 θx 3 θx
+  2 θy 3 θy
+  2 θz 3 θz
+
+# Podemos definir diferentes materiais (não é obrigatório usar todos os que
+# estão sendo definidos). Cada material deve ter um nome, Ex e G. 
+materiais:
+  - nome: aco
+    Ex: 210E9
+    G: 80E9
+
+  - nome: aluminio
+    Ex: 70E9
+    G: 20E9
+  
+# Podemos definir diferentes geometrias (não é obrigatório usar todas as que
+# estão sendo definidos). Cada geometria deve ter um nome, A, Iz, Iy, α e J0 
+geometrias:
+  - nome: tubo1
+    A: 1E-2
+    Iz: 80E-9
+    Iy: 80E-9
+    J0: 40E-9
+    α: 0
+    
+  - nome: tubo2
+    A: 2E-2
+    Iz: 80E-9
+    Iy: 80E-9
+    J0: 40E-9 
+    α: 0
+
+
+# Devemos associar cada elemento a um material e a uma geometria. Cada linha é 
+# um elemento, primeira coluna o material e segunda coluna a geometria
+dados_elementos:
+  aco      tubo1
+  aluminio tubo2
+
+# Forças (e momentos) concentrados
+loads:
+  4 mz 200.0
+  4 fy -100.0
+

@@ -1,0 +1,75 @@
+# Exemplo com um só elemento, bi apoiado, forças distribuidas em y e z.
+
+
+versao: 1.0
+
+# Título é opcional
+titulo:  "Dados 1" 
+
+# Data de criação também
+data:  13/11/2023
+
+# Coordenadas é obrigatório. Uma linha para cada nó e 3 colunas
+coordenadas: 
+  0.0 0.0 0.0
+  0.5 0.0 0.0
+  1.0 0.0 0.0
+
+# As conectividades também devem ser informadas. Cada linha é um elemento  
+#
+conectividades:
+  1 2 
+  2 3  
+
+# Informação dos apoios também é obrigatória. Os gls locais podem
+# ser informados tanto pelos símbolos quanto pelos valores em [1,6]
+apoios:
+  1 ux 0.0
+  1 uy 0.0
+  1 uz 0.0
+  1 θx 0.0
+  1 θy 0.0
+  1 θz 0.0
+
+# Multi Point Constraints
+# Restrições em que o resultado (deslocamento ou rotação) de um gl global
+# deve ser igual a outro gl global. As informações são dadas por 
+# no1 gl1 no2 gl2 
+# onde gl1 e gl2 são os gls locais dos nós no1 e no2
+mpc: 
+
+  
+  
+# Podemos definir diferentes materiais (não é obrigatório usar todos os que
+# estão sendo definidos). Cada material deve ter um nome, Ex e G. 
+materiais:
+  - nome: sarah
+    Ex: 30E9
+    G: 3E9
+
+# Podemos definir diferentes geometrias (não é obrigatório usar todas as que
+# estão sendo definidos). Cada geometria deve ter um nome, A, Iz, Iy, α e J0 
+geometrias:
+  - nome: geo1
+    A: 0.15
+    Iz: 0.000003125
+    Iy: 0.000005347
+    J0: 0.005742
+    α: 0
+    
+# Devemos associar cada elemento a um material e a uma geometria. Cada linha é 
+# um elemento, primeira coluna o material e segunda coluna a geometria
+dados_elementos:
+  sarah geo1 
+  sarah geo1
+
+
+# Forças (e momentos) concentrados
+loads:
+  3 fy 1000.0
+
+# Os carregamentos dsitribuidos vão ser:
+# Sendo as colunas elemento q1y q2y q1z q2z
+floads:
+
+

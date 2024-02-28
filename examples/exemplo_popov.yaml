@@ -1,0 +1,52 @@
+versao: 1.0
+
+titulo: "exemplo_popov"
+
+data: 13/11/2023
+
+coordenadas:
+  0.0 0.0 0.0
+  0.1 0.0 0.0
+  0.1 0.1 0.0
+  0.1 0.1 0.1
+
+conectividades:
+  1 2
+  2 3
+  3 4
+
+apoios:
+  1 ux 0.0
+  1 uy 0.0
+  1 uz 0.0
+  1 θx 0.0
+  1 θy 0.0
+  1 θz 0.0
+
+mpc:
+
+materiais:
+  - nome: popov
+    Ex: 211E9
+    G: 8.44E9
+
+
+geometrias:
+  - nome: tubo1
+    A: 1.96e-5
+    Iz: 3.07e-11
+    Iy: 3.07e-11
+    J0: 6.14e-11
+    α: 0
+
+dados_elementos:
+  popov tubo1
+  popov tubo1
+  popov tubo1
+
+loads:
+  4 fx  5.0
+  4 fy  5.0
+  4 fz -5.0
+
+floads:
