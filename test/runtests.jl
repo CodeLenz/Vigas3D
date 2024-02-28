@@ -1,15 +1,11 @@
 
-
-
 using Test
-
-
-include("main.jl")
+using Viga3D
 
 @testset "Portico Dan" begin
 
     # Chama o programa 
-    U,F = Analise_Portico3D("exemplos/exemplo_popov.yaml",verbose=false)
+    U,F = Analise_Portico3D("../examples/exemplo_popov.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux4 = U[6*(4-1)+1]
@@ -32,7 +28,7 @@ end
 @testset "Força Y na ponta" begin
 
     # Chama o programa 
-    U,F = Analise_Portico3D("exemplos/f_ponta_y.yaml",verbose=false)
+    U,F = Analise_Portico3D("../examples/f_ponta_y.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux3 = U[6*(3-1)+1]
@@ -65,7 +61,7 @@ end
 @testset "Força Z na ponta" begin
 
     # Chama o programa 
-    U,F = Analise_Portico3D("exemplos/f_ponta_z.yaml",verbose=false)
+    U,F = Analise_Portico3D("../examples/f_ponta_z.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux3 = U[6*(3-1)+1]
@@ -102,7 +98,7 @@ end
 
     # Chama o programa
 
-    U, F = Analise_Portico3D("exemplos/distribuido_y.yaml", verbose=false)
+    U, F = Analise_Portico3D("../examples/distribuido_y.yaml", verbose=false)
 
     # Comparando os valores do nó 2 para deflexao e nó 1 para theta com a referência
 
@@ -140,7 +136,7 @@ end
 
     # Chama o programa
 
-    U, F = Analise_Portico3D("exemplos/distribuido_z.yaml", verbose=false)
+    U, F = Analise_Portico3D("../examples/distribuido_z.yaml", verbose=false)
 
     # Comparando os valores do nó 2 para deflexao e nó 1 para theta com a referência
 
