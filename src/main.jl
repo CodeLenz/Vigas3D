@@ -1,7 +1,18 @@
 
 
 # A função principal será:
+"""
+Rotina principal que calcula o vetor de deslocamento de um pórtico 3D
 
+Uso:
+
+Analise_Portico3D(arquivo;verbose=true)
+
+onde arquivo deve apontar para um .yaml com os dados  e verbose
+indica se queremos que a rotina faça comentários ao longo da 
+execução.
+
+"""
 function Analise_Portico3D(arquivo; verbose=true)
 
     # Le os dados do problema
