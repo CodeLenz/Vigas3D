@@ -9,7 +9,8 @@ module Viga3D
 	include("global.jl")
 	include("Kg_portico.jl")
 	include("apoios.jl")
-	
+	include("main.jl")
+
 	export 	Analise_Portico3D
 
 end
