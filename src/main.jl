@@ -52,45 +52,43 @@ function Analise_Portico3D(arquivo; verbose=true)
     # Usa o nome do arquivo .yaml como base para o arquivo de saída
     arquivo_saida = arquivo[1:end-5]*".txt"
 
-    println("Abrindo $(arquivo_saida) para escrita dos resultados")
+    verbose && println("Abrindo $(arquivo_saida) para escrita dos resultados")
 
     # Abre um arquivo de texto para saída
     saida = open(arquivo_saida,"w")
 
     # Mostra de forma organizada os resultados
-    if verbose
-        gls = ["ux","uy","uz","θx", "θy", "θz"]
-        contador = 1
-        println(saida,"********** Deslocamentos e rotações do modelo **********")
-        for no=1:nnos
+    gls = ["ux","uy","uz","θx", "θy", "θz"]
+    contador = 1
+    println(saida,"********** Deslocamentos e rotações do modelo **********")
+    for no=1:nnos
 
-            println(saida,"Nó ",no)
+        println(saida,"Nó ",no)
 
-            for gl=1:6
-                println(saida,"     ",gls[gl]," ",U[contador])
-                contador += 1
-            end
-
+        for gl=1:6
+            println(saida,"     ",gls[gl]," ",U[contador])
+            contador += 1
         end
 
-        println(saida)
-        println(saida)
+    end
+
+    println(saida)
+    println(saida)
 
 
-        glsf = ["Fx","Fy","Fz","Mx", "My", "Mz"]
-        contador = 1
-        println(saida,"********** Forças e momentos do modelo **********")
-        for no=1:nnos
+    glsf = ["Fx","Fy","Fz","Mx", "My", "Mz"]
+    contador = 1
+    println(saida,"********** Forças e momentos do modelo **********")
+    for no=1:nnos
 
-            println(saida,"Nó ",no)
+        println(saida,"Nó ",no)
 
-            for gl=1:6
-                println(saida,"     ",glsf[gl]," ",Forcas[contador])
-                contador += 1
-            end
-
+        for gl=1:6
+            println(saida,"     ",glsf[gl]," ",Forcas[contador])
+            contador += 1
         end
-    end # verbose
+
+    end
 
     # Fecha o arquivo de escrita
     close(saida)
