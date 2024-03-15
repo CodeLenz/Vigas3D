@@ -4,8 +4,8 @@ using Viga3D
 
 @testset "Portico Dan" begin
 
-    # Chama o programa 
-    U,F = Analise_Portico3D("../examples/exemplo_popov.yaml",verbose=false)
+    # Chama o programa
+    U,F,_ = Analise_Portico3D("../examples/exemplo_popov.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux4 = U[6*(4-1)+1]
@@ -22,13 +22,13 @@ using Viga3D
     @test isapprox(tx4,-0.2084,atol=1E-4)
     @test isapprox(ty4,0.1119,atol=1E-4)
     @test isapprox(tz4,-0.0077,atol=1E-4)
-  
+
 end
 
 @testset "Força Y na ponta" begin
 
-    # Chama o programa 
-    U,F = Analise_Portico3D("../examples/f_ponta_y.yaml",verbose=false)
+    # Chama o programa
+    U,F,_ = Analise_Portico3D("../examples/f_ponta_y.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux3 = U[6*(3-1)+1]
@@ -45,7 +45,7 @@ end
     W = 1000
     vmax = (W)/(3*E*Iz)
     thetamax = (W)/(2*E*Iz)
-    
+
     # Compara com os valores conhecidos
     @test isapprox(uy3,vmax,atol=1E-4)
     @test isapprox(tz3,thetamax,atol=1E-4)
@@ -60,8 +60,8 @@ end
 
 @testset "Força Z na ponta" begin
 
-    # Chama o programa 
-    U,F = Analise_Portico3D("../examples/f_ponta_z.yaml",verbose=false)
+    # Chama o programa
+    U,F,_ = Analise_Portico3D("../examples/f_ponta_z.yaml",verbose=false)
 
     # Compara a resposta do nó 4 com os valores de referência
     ux3 = U[6*(3-1)+1]
@@ -98,7 +98,7 @@ end
 
     # Chama o programa
 
-    U, F = Analise_Portico3D("../examples/distribuido_y.yaml", verbose=false)
+    U, F, _ = Analise_Portico3D("../examples/distribuido_y.yaml", verbose=false)
 
     # Comparando os valores do nó 2 para deflexao e nó 1 para theta com a referência
 
@@ -121,13 +121,13 @@ end
     # Compara com os valores conhecidos
     @test isapprox(uy3,vmax,atol=1E-4)
     @test isapprox(tz3,thetamax,atol=1E-4)
-   
+
     # Os demais devem dar "zero"
     @test isapprox(ux3,0.0,atol=1E-4)
     @test isapprox(uz3,0.0,atol=1E-4)
     @test isapprox(tx3,0.0,atol=1E-4)
     @test isapprox(ty3,0.0,atol=1E-4)
-   
+
 
 
 end
@@ -136,7 +136,7 @@ end
 
     # Chama o programa
 
-    U, F = Analise_Portico3D("../examples/distribuido_z.yaml", verbose=false)
+    U, F, _ = Analise_Portico3D("../examples/distribuido_z.yaml", verbose=false)
 
     # Comparando os valores do nó 2 para deflexao e nó 1 para theta com a referência
 
@@ -159,15 +159,13 @@ end
     # Compara com os valores conhecidos
     @test isapprox(uz3,vmax,atol=1E-4)
     @test isapprox(ty3,thetamax,atol=1E-4)
-   
+
     # Os demais devem dar "zero"
     @test isapprox(ux3,0.0,atol=1E-4)
     @test isapprox(uy3,0.0,atol=1E-4)
     @test isapprox(tx3,0.0,atol=1E-4)
     @test isapprox(tz3,0.0,atol=1E-4)
-   
+
 
 
 end
-
-

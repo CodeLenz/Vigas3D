@@ -2,6 +2,7 @@ module Viga3D
 
 	using LinearAlgebra
 	using SparseArrays
+	using LinearSolve
 
 	# Carregando as outras rotinas:
 	include("leitura_dados.jl")

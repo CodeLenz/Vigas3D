@@ -37,11 +37,17 @@ function Analise_Portico3D(arquivo; verbose=true)
     KA, FA = Aumenta_sistema(apoios, mpc, KG, F)
 
     # Soluciona o sistema global de equações para obter U
-    U = KA\FA
+
+    # Cria um problema linear para ser solucionado pelo LinearSolve
+    # U = KA\FA
+    prob = LinearSolve(KA,FA)
+    linsolve = init(prob)
+    U_ = solve(linsolve)
+    U = U_.u[1:6*nnos]
 
     # Calcula as forças do modelo, usando somente os deslocamentos e rotações
     # i.e, sem os multiplicadores
-    Forcas = KG*U[1:6*nnos]
+    Forcas = KG*U
 
     # Usa o nome do arquivo .yaml como base para o arquivo de saída
     arquivo_saida = arquivo[1:end-5]*".txt"
@@ -91,6 +97,6 @@ function Analise_Portico3D(arquivo; verbose=true)
 
     # Devolve os deslocamentos e rotações sem os multiplicadores
     # e as forças
-    return U[1:6*nnos], Forcas, KG, KA
+    return U, Forcas, linsolve
 
 end
