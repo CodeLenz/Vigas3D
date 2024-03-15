@@ -39,11 +39,14 @@ function Analise_Portico3D(arquivo; verbose=true)
     # Soluciona o sistema global de equações para obter U
     U = KA\FA
 
-    # Calcula as forças do modelo
+    # Calcula as forças do modelo, usando somente os deslocamentos e rotações
+    # i.e, sem os multiplicadores
     Forcas = KG*U[1:6*nnos]
 
     # Usa o nome do arquivo .yaml como base para o arquivo de saída
     arquivo_saida = arquivo[1:end-5]*".txt"
+
+   println("Abrindo $(arquivo_saida) para escrita dos resultados")
 
     # Abre um arquivo de texto para saída
     saida = open(arquivo_saida,"w")
