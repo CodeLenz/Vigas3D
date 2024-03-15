@@ -91,6 +91,6 @@ function Analise_Portico3D(arquivo; verbose=true)
 
     # Devolve os deslocamentos e rotações sem os multiplicadores
     # e as forças
-    return U[1:6*nnos], Forcas
+    return U[1:6*nnos], Forcas, KG, KA
 
 end

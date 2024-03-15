@@ -1,6 +1,7 @@
 module Viga3D
- 
+
 	using LinearAlgebra
+	using SparseArrays
 
 	# Carregando as outras rotinas:
 	include("leitura_dados.jl")
@@ -14,4 +15,3 @@ module Viga3D
 	export 	Analise_Portico3D
 
 end
-

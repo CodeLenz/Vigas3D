@@ -2,7 +2,7 @@
 #                   Rotina para aplicar as condições de contorno                    #
 #####################################################################################
 
-function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::Matrix,F::Vector)
+function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::AbstractMatrix,F::Vector)
 
     # Numero de restrições no sistema
     m = size(apoios, 1)
@@ -14,7 +14,7 @@ function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::Matrix,F::Vector
     n = length(F)
 
     # Alocando a matriz A
-    A = zeros(m+s, n)
+    A = spzeros(m+s, n)
 
     # Alocando o vetor de deslocamentos com restrição
     b = zeros(m+s)
@@ -27,16 +27,16 @@ function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::Matrix,F::Vector
 
          # Descobre o gl(local) do apoio
          gl = Int64(apoios[i,2])
-        
+
          # Gl global do apoio
          glg = 6*(no-1)+gl
-        
+
          # Preenchendo com 1 as posições globais onde os deslocamentos são restritos
          A[i,glg] = 1
 
          # B é o vetor que possui os valores dos deslocamentos restritos
          b[i] = apoios[i,3]
-        
+
     end
 
     # Loop pelos MPCs
@@ -46,7 +46,7 @@ function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::Matrix,F::Vector
         no1 = Int64(MPC[i,1])
         gl1 = Int64(MPC[i,2])
         glg1 = 6*(no1-1)+gl1
-        
+
 
         # Nó 2 do MPC
         no2 = Int64(MPC[i,3])
@@ -59,11 +59,11 @@ function Aumenta_sistema(apoios::Matrix{Float64},MPC::Array,KG::Matrix,F::Vector
     end
 
     # A matriz de rigidez aumentada, KA
-    KA = [KG A'; A zeros(m+s, m+s)]
+    KA = [KG A'; A spzeros(m+s, m+s)]
 
-    # O vetor de força aumentado FA 
+    # O vetor de força aumentado FA
     FA = [F; b]
 
     return KA, FA
-    
+
 end
