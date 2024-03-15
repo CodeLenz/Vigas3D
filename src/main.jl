@@ -40,7 +40,7 @@ function Analise_Portico3D(arquivo; verbose=true)
 
     # Cria um problema linear para ser solucionado pelo LinearSolve
     # U = KA\FA
-    prob = LinearSolve(KA,FA)
+    prob = LinearProblem(KA,FA)
     linsolve = init(prob)
     U_ = solve(linsolve)
     U = U_.u[1:6*nnos]
