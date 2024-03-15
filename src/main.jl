@@ -46,7 +46,7 @@ function Analise_Portico3D(arquivo; verbose=true)
     # Usa o nome do arquivo .yaml como base para o arquivo de saída
     arquivo_saida = arquivo[1:end-5]*".txt"
 
-   println("Abrindo $(arquivo_saida) para escrita dos resultados")
+    println("Abrindo $(arquivo_saida) para escrita dos resultados")
 
     # Abre um arquivo de texto para saída
     saida = open(arquivo_saida,"w")
